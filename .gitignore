@@ -1,0 +1,45 @@
+# Python/cache
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local/private inputs
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Large or generated data
+Datasets/
+data/interim/
+data/processed/
+docker/volumes/
+Docs/
+notebooks/
+COPILOT.md
+
+# Trained model artifacts
+models/*.pkl
+models/*.joblib
+
+# Reports: keep only small final/audit artifacts for traceability
+reports/*
+!reports/model_card.md
+!reports/metrics.json
+!reports/model_comparison.csv
+!reports/classification_report.csv
+!reports/confusion_matrix.csv
+!reports/confusion_matrix.png
+!reports/confusion_matrix_normalized.csv
+!reports/confusion_matrix_normalized.png
+!reports/bench_rotation_grouping_experiment.json
+!reports/bench_rotation_grouping_experiment.csv
+!reports/data_source_audit.md
+!reports/data_source_audit.json
+!reports/master_table_summary.json

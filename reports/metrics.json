@@ -1,0 +1,28 @@
+{
+  "data_source": "processed",
+  "labels": [
+    "NON_NBA",
+    "NBA_ROLE_PLAYER",
+    "STARTER_PLUS"
+  ],
+  "metrics": {
+    "accuracy": 0.9815826439831434,
+    "balanced_accuracy": 0.5604555779166519,
+    "log_loss": 0.05960933954231019,
+    "macro_f1": 0.5991628321173775,
+    "top_2_accuracy": 0.9995317621351647,
+    "weighted_f1": 0.9817005917400372
+  },
+  "model_name": "grouped_xgboost_model",
+  "split": {
+    "test": "2021-2022",
+    "train": "draft_year <= 2018",
+    "validation": "2019-2020"
+  },
+  "test_distribution": {
+    "NBA_ROLE_PLAYER": 108,
+    "NON_NBA": 6294,
+    "STARTER_PLUS": 5
+  },
+  "test_rows": 6407
+}

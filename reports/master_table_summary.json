@@ -1,0 +1,76 @@
+{
+  "draft_source_distribution": {
+    "basketball_reference_draft": 88,
+    "ncaa_nba_excel_2009_2021": 4,
+    "not_drafted": 26129,
+    "twenty_years_nba_draft_data": 613
+  },
+  "draft_year_max": 2023,
+  "draft_year_min": 2009,
+  "drafted_rows": 705,
+  "feature_columns": [
+    "pts_per40_z",
+    "ast_per40_z",
+    "reb_per40_z",
+    "stl_per40_z",
+    "blk_per40_z",
+    "tov_per40_z",
+    "ts_pct_z",
+    "efg_pct_z",
+    "usg_pct_z",
+    "ast_tov_ratio_z",
+    "stocks_per40_z",
+    "three_par_z",
+    "ftr_z",
+    "rec_rank_z",
+    "is_unranked_z",
+    "official_games_z",
+    "official_mpg_z",
+    "official_start_rate_z",
+    "height_in_z",
+    "weight_lb_z",
+    "wingspan_in_z",
+    "bmi_z",
+    "wingspan_diff_z",
+    "age_at_draft_z",
+    "team_adj_o_z",
+    "team_adj_d_z",
+    "team_tempo_z",
+    "team_power_rating_z",
+    "strength_of_schedule_z"
+  ],
+  "feature_rows": 26834,
+  "master_rows": 26834,
+  "nba_games_per_season_assumption": 72,
+  "ncaa_source_distribution": {
+    "bart_torvik_2022": 4917,
+    "bart_torvik_2023": 45,
+    "college_basketball_players_2009_2021": 21872
+  },
+  "non_drafted_rows": 26129,
+  "target_active_seasons_horizon": 3,
+  "target_active_seasons_start_offset": 0,
+  "target_distribution": {
+    "BENCH": 355,
+    "NON_NBA": 26142,
+    "ROTATION": 293,
+    "STARTER_PLUS": 44
+  },
+  "target_source_distribution": {
+    "active_seasons_box_score": 402,
+    "active_seasons_raptor_with_box_score": 262,
+    "no_active_nba_seasons": 41,
+    "not_drafted_in_source_window": 25707,
+    "undrafted_active_seasons_box_score_school_match": 362,
+    "undrafted_active_seasons_raptor_school_match": 1,
+    "undrafted_active_seasons_raptor_with_box_score_school_match": 59
+  },
+  "undrafted_nba_identity_relabels": 422,
+  "undrafted_nba_relabel_target_distribution": {
+    "BENCH": 87,
+    "NON_NBA": 267,
+    "ROTATION": 64,
+    "STARTER_PLUS": 4
+  },
+  "z_score_fit_rule": "draft_year <= 2018"
+}

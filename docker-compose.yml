@@ -1,0 +1,257 @@
+services:
+  checkpoint:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: python -c "from src.config import *; print('Config importable')"
+
+  data-checkpoint:
+    build:
+      context: .
+      dockerfile: docker/data.Dockerfile
+    image: ncaa-nba-role-predictor:data
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: python -m src.data.load
+
+  data-build-master:
+    build:
+      context: .
+      dockerfile: docker/data.Dockerfile
+    image: ncaa-nba-role-predictor:data
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: python -m src.data.build_master
+
+  ncaa-bigquery-export:
+    build:
+      context: .
+      dockerfile: docker/data.Dockerfile
+    image: ncaa-nba-role-predictor:data
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./secrets:/secrets:ro
+    environment:
+      PYTHONPATH: /app
+      GOOGLE_APPLICATION_CREDENTIALS: ${GOOGLE_APPLICATION_CREDENTIALS:-}
+      GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:-}
+      BIGQUERY_BILLING_PROJECT: ${BIGQUERY_BILLING_PROJECT:-}
+    command: python -m src.data.export_ncaa_bigquery --tables mbb_players_games_sr mbb_teams_games_sr --start-season 2009 --end-season 2023
+
+  milvus-viewer:
+    build:
+      context: .
+      dockerfile: docker/milvus-tools.Dockerfile
+    image: ncaa-nba-role-predictor:milvus-tools
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      MILVUS_HOST: milvus
+      MILVUS_PORT: "19530"
+      PYTHONPATH: /app
+    depends_on:
+      milvus:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    command: python milvus_viewer.py --interactive
+
+  vectorstore-ingest:
+    build:
+      context: .
+      dockerfile: docker/milvus-tools.Dockerfile
+    image: ncaa-nba-role-predictor:milvus-tools
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      MILVUS_HOST: milvus
+      MILVUS_PORT: "19530"
+      PYTHONPATH: /app
+    depends_on:
+      milvus:
+        condition: service_healthy
+    command: python -m src.vectorstore.ingest
+
+  vectorstore-ingest-full:
+    build:
+      context: .
+      dockerfile: docker/milvus-tools.Dockerfile
+    image: ncaa-nba-role-predictor:milvus-tools
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      MILVUS_HOST: milvus
+      MILVUS_PORT: "19530"
+      PYTHONPATH: /app
+      USE_SENTENCE_TRANSFORMERS: "0"
+    depends_on:
+      milvus:
+        condition: service_healthy
+    command: python -m src.vectorstore.ingest_full_dataset
+
+  vectorstore-search:
+    build:
+      context: .
+      dockerfile: docker/milvus-tools.Dockerfile
+    image: ncaa-nba-role-predictor:milvus-tools
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      MILVUS_HOST: milvus
+      MILVUS_PORT: "19530"
+      PYTHONPATH: /app
+    depends_on:
+      milvus:
+        condition: service_healthy
+    command: python -m src.vectorstore.search
+
+  model-train:
+    build:
+      context: .
+      dockerfile: docker/ml.Dockerfile
+    image: ncaa-nba-role-predictor:ml
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: python -m src.models.train
+
+  final-report:
+    build:
+      context: .
+      dockerfile: docker/ml.Dockerfile
+    image: ncaa-nba-role-predictor:ml
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: python -m src.models.final_report
+
+  model-train-two-stage:
+    build:
+      context: .
+      dockerfile: docker/ml.Dockerfile
+    image: ncaa-nba-role-predictor:ml
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: python -m src.models.train_two_stage
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    image: ncaa-nba-role-predictor:api
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      MILVUS_HOST: milvus
+      MILVUS_PORT: "19530"
+      PYTHONPATH: /app
+    ports:
+      - "8000:8000"
+    depends_on:
+      milvus:
+        condition: service_healthy
+    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app.Dockerfile
+    image: ncaa-nba-role-predictor:streamlit
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      API_BASE_URL: http://api:8000
+      MILVUS_HOST: milvus
+      MILVUS_PORT: "19530"
+      PYTHONPATH: /app
+    ports:
+      - "8501:8501"
+    depends_on:
+      api:
+        condition: service_started
+    command: >
+      streamlit run app/demo.py
+      --server.address 0.0.0.0
+      --server.port 8501
+      --server.headless true
+      --browser.gatherUsageStats false
+
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.5
+    environment:
+      ETCD_AUTO_COMPACTION_MODE: revision
+      ETCD_AUTO_COMPACTION_RETENTION: "1000"
+      ETCD_QUOTA_BACKEND_BYTES: "4294967296"
+      ETCD_SNAPSHOT_COUNT: "50000"
+    volumes:
+      - ./docker/volumes/etcd:/etcd
+    command: >
+      etcd
+      -advertise-client-urls=http://127.0.0.1:2379
+      -listen-client-urls http://0.0.0.0:2379
+      --data-dir /etcd
+
+  minio:
+    image: minio/minio:RELEASE.2023-03-20T20-16-18Z
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+    ports:
+      - "9001:9001"
+      - "9000:9000"
+    volumes:
+      - ./docker/volumes/minio:/minio_data
+    command: minio server /minio_data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  milvus:
+    image: milvusdb/milvus:v2.4.8
+    command: ["milvus", "run", "standalone"]
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+    ports:
+      - "19530:19530"
+      - "9091:9091"
+    volumes:
+      - ./docker/volumes/milvus:/var/lib/milvus
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 30s
+      start_period: 90s
+      timeout: 20s
+      retries: 5
+    depends_on:
+      etcd:
+        condition: service_started
+      minio:
+        condition: service_healthy

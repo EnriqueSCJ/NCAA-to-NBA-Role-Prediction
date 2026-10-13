@@ -1,0 +1,1011 @@
+{
+  "bigquery_player_games": {
+    "current_official_feature_coverage_by_draft_year": [
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2009,
+        "rows": 1663
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2010,
+        "rows": 1718
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2011,
+        "rows": 1714
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2012,
+        "rows": 1614
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2013,
+        "rows": 1652
+      },
+      {
+        "coverage_pct": 0.8622093023255814,
+        "covered_rows": 1483,
+        "draft_year": 2014,
+        "rows": 1720
+      },
+      {
+        "coverage_pct": 0.9635327635327635,
+        "covered_rows": 1691,
+        "draft_year": 2015,
+        "rows": 1755
+      },
+      {
+        "coverage_pct": 0.9818949909474954,
+        "covered_rows": 1627,
+        "draft_year": 2016,
+        "rows": 1657
+      },
+      {
+        "coverage_pct": 0.9829912023460411,
+        "covered_rows": 1676,
+        "draft_year": 2017,
+        "rows": 1705
+      },
+      {
+        "coverage_pct": 0.9852774631936579,
+        "covered_rows": 1740,
+        "draft_year": 2018,
+        "rows": 1766
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2019,
+        "rows": 1744
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2020,
+        "rows": 1674
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2021,
+        "rows": 1490
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2022,
+        "rows": 4917
+      },
+      {
+        "coverage_pct": 0.0,
+        "covered_rows": 0,
+        "draft_year": 2023,
+        "rows": 45
+      }
+    ],
+    "exists": true,
+    "methodological_note": "The current pipeline uses only official games, MPG and start rate. More box-score aggregates could be derived from this parquet, but only for the exported seasons; uneven year coverage can introduce covariate shift.",
+    "model_seasons_after_current_shift": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018
+    ],
+    "path": "/app/Datasets/NCAA BigQuery Export/bigquery-public-data__ncaa_basketball__mbb_players_games_sr.parquet",
+    "raw_rows": 888844,
+    "raw_source_seasons": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017
+    ]
+  },
+  "combine_sources": {
+    "athletic_test_coverage_on_exact_matches": {
+      "BENCH": {
+        "covered_all_rows": 377,
+        "covered_drafted_rows": 291,
+        "covered_starter_plus_rows": 17
+      },
+      "LANE": {
+        "covered_all_rows": 610,
+        "covered_drafted_rows": 458,
+        "covered_starter_plus_rows": 23
+      },
+      "LPVERT": {
+        "covered_all_rows": 617,
+        "covered_drafted_rows": 464,
+        "covered_starter_plus_rows": 23
+      },
+      "SHUTTLE": {
+        "covered_all_rows": 411,
+        "covered_drafted_rows": 289,
+        "covered_starter_plus_rows": 11
+      },
+      "SPRINT": {
+        "covered_all_rows": 613,
+        "covered_drafted_rows": 461,
+        "covered_starter_plus_rows": 23
+      },
+      "STNDVERT": {
+        "covered_all_rows": 616,
+        "covered_drafted_rows": 463,
+        "covered_starter_plus_rows": 23
+      }
+    },
+    "exact_coverage_by_split": {
+      "exploratory_2023": {
+        "coverage_pct": 0.8222222222222222,
+        "covered_rows": 37,
+        "rows": 45
+      },
+      "test_2021_2022": {
+        "coverage_pct": 0.015139690963009208,
+        "covered_rows": 97,
+        "rows": 6407
+      },
+      "train_2009_2018": {
+        "coverage_pct": 0.02988681914642773,
+        "covered_rows": 507,
+        "rows": 16964
+      },
+      "validation_2019_2020": {
+        "coverage_pct": 0.02662375658279696,
+        "covered_rows": 91,
+        "rows": 3418
+      }
+    },
+    "exact_master_matches": 732,
+    "kaggle_rows": 1678,
+    "kaggle_unique_players": 1677,
+    "methodological_note": "Athletic combine tests are pre-draft, but missingness is not random because combine invitations are a scouting signal. They should be added only with explicit missing indicators and validated by temporal validation.",
+    "nl_combine_source": {
+      "additional_exact_matches_beyond_kaggle": 0,
+      "exact_master_matches": 732,
+      "exists": true,
+      "rows": 1678,
+      "unique_players": 1677
+    },
+    "pipeline_currently_uses": [
+      "HGT",
+      "WGT",
+      "WNGSPN",
+      "POS",
+      "BMI"
+    ],
+    "pipeline_ignores_athletic_tests": [
+      "STNDVERT",
+      "LPVERT",
+      "LANE",
+      "SHUTTLE",
+      "SPRINT",
+      "BENCH"
+    ],
+    "player_fallback_master_matches": 827
+  },
+  "current_processed_data": {
+    "draft_year_max": 2023,
+    "draft_year_min": 2009,
+    "drafted_rows": 705,
+    "master_rows": 26834,
+    "ncaa_source_distribution": {
+      "bart_torvik_2022": 4917,
+      "bart_torvik_2023": 45,
+      "college_basketball_players_2009_2021": 21872
+    },
+    "non_drafted_rows": 26129,
+    "target_distribution": {
+      "BENCH": 355,
+      "NON_NBA": 26142,
+      "ROTATION": 293,
+      "STARTER_PLUS": 44
+    }
+  },
+  "nba_auxiliary_sources": {
+    "columns": [
+      "personId",
+      "firstName",
+      "lastName",
+      "birthDate",
+      "school",
+      "country",
+      "heightInches",
+      "bodyWeightLbs",
+      "jersey",
+      "guard",
+      "forward",
+      "center",
+      "dleagueFlag",
+      "nbaFlag",
+      "gamesPlayedFlag",
+      "draftYear",
+      "draftRound",
+      "draftNumber",
+      "fromYear",
+      "toYear",
+      "player_name",
+      "player_key",
+      "school_key"
+    ],
+    "draft_metadata_columns_present": [
+      "draftYear",
+      "draftRound",
+      "draftNumber"
+    ],
+    "master_name_matches": 1911,
+    "methodological_note": "NBA player and career/stat files are useful for target construction, identity matching and measurement fallback. Career NBA stats, draft number and post-draft metadata should not be model input features for a pre-draft predictor.",
+    "name_columns_detected": [
+      "firstName",
+      "lastName"
+    ],
+    "nba_box_players_exists": true,
+    "nba_box_players_path": "/app/Datasets/NBA Dataset Box Scores and Stats (1947 - Today)/Players.csv",
+    "physical_columns_present": [
+      "heightInches",
+      "bodyWeightLbs"
+    ],
+    "rows": 6692
+  },
+  "ncaa_2022_overlap": {
+    "bart_torvik_2022_only_examples": [
+      {
+        "player_name": "Camron Justice",
+        "team": "Western Kentucky",
+        "year": 2022
+      },
+      {
+        "player_name": "Traci Carter",
+        "team": "Hartford",
+        "year": 2022
+      },
+      {
+        "player_name": "Shaheed Medlock",
+        "team": "DePaul",
+        "year": 2022
+      },
+      {
+        "player_name": "James Butler",
+        "team": "Drexel",
+        "year": 2022
+      },
+      {
+        "player_name": "Colin Slater",
+        "team": "Long Beach St.",
+        "year": 2022
+      },
+      {
+        "player_name": "DJ Jones",
+        "team": "Florida A&M",
+        "year": 2022
+      },
+      {
+        "player_name": "Monty Scott",
+        "team": "Eastern Michigan",
+        "year": 2022
+      },
+      {
+        "player_name": "Osinachi Smart",
+        "team": "Charleston",
+        "year": 2022
+      },
+      {
+        "player_name": "Ethan Claycomb",
+        "team": "Bellarmine",
+        "year": 2022
+      },
+      {
+        "player_name": "Darius Hicks",
+        "team": "Jackson St.",
+        "year": 2022
+      }
+    ],
+    "bart_torvik_2022_only_not_in_current_master": 31,
+    "bart_torvik_2022_only_rows": 1610,
+    "bart_torvik_2022_rows": 5012,
+    "bart_torvik_2022_unique_players": 4977,
+    "base_path": "/app/Datasets/College Basketball 2009-2021 + NBA Advanced Stats/CollegeBasketballPlayers2022.csv",
+    "college_2022_only_examples": [
+      {
+        "player_name": "Isaiah Felder",
+        "team": "South Carolina St.",
+        "year": 2022
+      },
+      {
+        "player_name": "George Willborn III",
+        "team": "UC Riverside",
+        "year": 2022
+      },
+      {
+        "player_name": "Chance Garvin",
+        "team": "Idaho",
+        "year": 2022
+      },
+      {
+        "player_name": "Vittorio Reynoso-Avila",
+        "team": "Santa Clara",
+        "year": 2022
+      },
+      {
+        "player_name": "Ryan Gomes",
+        "team": "Houston Baptist",
+        "year": 2022
+      },
+      {
+        "player_name": "Devin Kirby",
+        "team": "Montana St.",
+        "year": 2022
+      },
+      {
+        "player_name": "James Scott",
+        "team": "Eastern Michigan",
+        "year": 2022
+      },
+      {
+        "player_name": "Osinachi Smart",
+        "team": "College of Charleston",
+        "year": 2022
+      },
+      {
+        "player_name": "Stafford Trueheart",
+        "team": "Hofstra",
+        "year": 2022
+      },
+      {
+        "player_name": "Mike Henn",
+        "team": "Denver",
+        "year": 2022
+      }
+    ],
+    "college_2022_only_not_in_current_master": 576,
+    "college_2022_only_rows": 576,
+    "college_basketball_players_2022_rows": 3978,
+    "college_basketball_players_2022_unique_players": 3959,
+    "row_key_overlap": 3402,
+    "status": "ok",
+    "torvik_path": "/app/Datasets/Bart Torvik Data/BartTorvik2022.csv"
+  },
+  "recommendations": [
+    {
+      "area": "target_labels",
+      "priority": "high",
+      "summary": "Relabel non-drafted NCAA players who later appear in NBA box-score/RAPTOR outcomes instead of forcing all non-drafted rows to NON_NBA."
+    },
+    {
+      "area": "combine",
+      "priority": "medium",
+      "summary": "Evaluate unused pre-draft athletic tests from combine sources with missing indicators and temporal validation."
+    },
+    {
+      "area": "ncaa_2022",
+      "priority": "medium",
+      "summary": "Compare CollegeBasketballPlayers2022.csv with BartTorvik2022.csv and add non-overlapping safe rows if schema-quality checks pass."
+    },
+    {
+      "area": "identity_matching",
+      "priority": "medium",
+      "summary": "Use NBA Box Scores Players.csv as an auxiliary identity/measurement fallback, while excluding draft number and career stats from features."
+    },
+    {
+      "area": "team_context",
+      "priority": "low",
+      "summary": "Do not add Torvik team_results-only columns to the supervised model unless equivalent historical training-year coverage is available."
+    }
+  ],
+  "team_context": {
+    "college_basketball_dataset_files": {
+      "cbb.csv": 4249,
+      "cbb13.csv": 347,
+      "cbb14.csv": 351,
+      "cbb15.csv": 351,
+      "cbb16.csv": 351,
+      "cbb17.csv": 351,
+      "cbb18.csv": 351,
+      "cbb19.csv": 353,
+      "cbb20.csv": 353,
+      "cbb21.csv": 347,
+      "cbb22.csv": 358,
+      "cbb23.csv": 363,
+      "cbb24.csv": 362,
+      "cbb25.csv": 364,
+      "cbb26.csv": 365
+    },
+    "current_context_nonzero_counts": {
+      "strength_of_schedule": 19954,
+      "team_adj_d": 20014,
+      "team_adj_o": 20014,
+      "team_power_rating": 20014,
+      "team_tempo": 20014
+    },
+    "methodological_note": "The team_results files contain richer schedule/context variables, but in this folder they start in 2022. Adding columns that exist only in test/future years would create a cohort-availability artifact unless equivalent historical columns are added for training years.",
+    "team_results_candidate_columns": [
+      "adjoe",
+      "adjde",
+      "barthag",
+      "sos",
+      "ncsos",
+      "consos",
+      "Opp OE",
+      "Opp DE",
+      "Con Adj OE",
+      "Con Adj DE",
+      "WAB",
+      "adjt"
+    ],
+    "team_results_coverage_by_year": {
+      "2022": {
+        "coverage_pct": 1.0,
+        "master_rows": 4917,
+        "matched_rows": 4917
+      },
+      "2023": {
+        "coverage_pct": 1.0,
+        "master_rows": 45,
+        "matched_rows": 45
+      },
+      "2024": {
+        "coverage_pct": 0.0,
+        "master_rows": 0,
+        "matched_rows": 0
+      },
+      "2025": {
+        "coverage_pct": 0.0,
+        "master_rows": 0,
+        "matched_rows": 0
+      },
+      "2026": {
+        "coverage_pct": 0.0,
+        "master_rows": 0,
+        "matched_rows": 0
+      }
+    },
+    "team_results_exists": true,
+    "team_results_rows": 1812,
+    "team_results_years": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "undrafted_nba_outcomes": {
+    "already_matches_current_target_total": 517,
+    "examples": [
+      {
+        "college": "St. Bonaventure",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2013,
+        "nba_active_seasons": "2014,2015,2016",
+        "nba_bpm_avg": -1.651831246944291,
+        "nba_minutes_y1_y3": 2104.0,
+        "nba_mpg_avg": 15.357664233576642,
+        "nba_school_keys": [
+          "louisiana state",
+          "university of dayton"
+        ],
+        "player_name": "Chris Johnson",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Wake Forest",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2011,
+        "nba_active_seasons": "2019,2020,2021",
+        "nba_bpm_avg": -3.7556804801741293,
+        "nba_minutes_y1_y3": 1796.0,
+        "nba_mpg_avg": 13.709923664122137,
+        "nba_school_keys": [
+          "cincinnati"
+        ],
+        "player_name": "Gary Clark",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "St. Francis PA",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2012,
+        "nba_active_seasons": "2013,2014,2015",
+        "nba_bpm_avg": -1.5743369979000001,
+        "nba_minutes_y1_y3": 1653.0,
+        "nba_mpg_avg": 15.89423076923077,
+        "nba_school_keys": [
+          "louisiana state",
+          "university of dayton"
+        ],
+        "player_name": "Chris Johnson",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "UMBC",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2020,
+        "nba_active_seasons": "2024,2025",
+        "nba_bpm_avg": -0.11442344280548565,
+        "nba_minutes_y1_y3": 1511.8,
+        "nba_mpg_avg": 14.536538461538461,
+        "nba_school_keys": [
+          "arkansas"
+        ],
+        "player_name": "Ricky Council II",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Wichita St.",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2022,
+        "nba_active_seasons": "2024,2025",
+        "nba_bpm_avg": -0.11442344280548565,
+        "nba_minutes_y1_y3": 1511.8,
+        "nba_mpg_avg": 14.536538461538461,
+        "nba_school_keys": [
+          "arkansas"
+        ],
+        "player_name": "Ricky Council IV",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Arizona",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2014,
+        "nba_active_seasons": "2015,2016",
+        "nba_bpm_avg": -1.370243236593637,
+        "nba_minutes_y1_y3": 1334.0,
+        "nba_mpg_avg": 13.75257731958763,
+        "nba_school_keys": [
+          "louisiana state",
+          "university of dayton"
+        ],
+        "player_name": "Chris Johnson",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Delaware St.",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2010,
+        "nba_active_seasons": "2012,2013,2014",
+        "nba_bpm_avg": 0.4434183467741933,
+        "nba_minutes_y1_y3": 1240.0,
+        "nba_mpg_avg": 14.090909090909092,
+        "nba_school_keys": [
+          "fresno state",
+          "western kentucky"
+        ],
+        "player_name": "Greg Smith",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "San Diego St.",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2009,
+        "nba_active_seasons": "2020,2021,2022",
+        "nba_bpm_avg": -0.6548997005988025,
+        "nba_minutes_y1_y3": 1169.0,
+        "nba_mpg_avg": 9.741666666666667,
+        "nba_school_keys": [
+          "iowa state"
+        ],
+        "player_name": "Matt Thomas",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Morehead St.",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2011,
+        "nba_active_seasons": "2012,2013,2014",
+        "nba_bpm_avg": -0.5397452660054107,
+        "nba_minutes_y1_y3": 1109.0,
+        "nba_mpg_avg": 14.786666666666667,
+        "nba_school_keys": [
+          "georgetown",
+          "virginia military institute"
+        ],
+        "player_name": "Reggie Williams",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Cal St. Northridge",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2013,
+        "nba_active_seasons": "2014,2015,2016",
+        "nba_bpm_avg": -5.253818244828468,
+        "nba_minutes_y1_y3": 884.0,
+        "nba_mpg_avg": 7.620689655172414,
+        "nba_school_keys": [
+          "belmont"
+        ],
+        "player_name": "Ian Clark",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "LSU",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2009,
+        "nba_active_seasons": "2011,2012,2013",
+        "nba_bpm_avg": -0.2932741161616164,
+        "nba_minutes_y1_y3": 660.0,
+        "nba_mpg_avg": 8.91891891891892,
+        "nba_school_keys": [
+          "louisiana state",
+          "university of dayton"
+        ],
+        "player_name": "Chris Johnson",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Colorado St.",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2013,
+        "nba_active_seasons": "2014,2015,2016",
+        "nba_bpm_avg": -1.3738166666666671,
+        "nba_minutes_y1_y3": 620.0,
+        "nba_mpg_avg": 9.538461538461538,
+        "nba_school_keys": [
+          "fresno state",
+          "western kentucky"
+        ],
+        "player_name": "Greg Smith",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Nevada",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2014,
+        "nba_active_seasons": "2019,2020,2023",
+        "nba_bpm_avg": -2.1436783831282957,
+        "nba_minutes_y1_y3": 569.0,
+        "nba_mpg_avg": 8.492537313432836,
+        "nba_school_keys": [
+          "iowa state"
+        ],
+        "player_name": "Deonte Burton",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Radford",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2022,
+        "nba_active_seasons": "2023,2024,2025",
+        "nba_bpm_avg": -0.4388641295216707,
+        "nba_minutes_y1_y3": 4344.91,
+        "nba_mpg_avg": 20.49485849056604,
+        "nba_school_keys": [
+          "unlv"
+        ],
+        "player_name": "Derrick Jones Jr.",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "Pepperdine",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2018,
+        "nba_active_seasons": "2020,2021,2022",
+        "nba_bpm_avg": 0.028728641090647142,
+        "nba_minutes_y1_y3": 2443.0,
+        "nba_mpg_avg": 18.79230769230769,
+        "nba_school_keys": [
+          "nevada"
+        ],
+        "player_name": "Caleb Martin",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "Stetson",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2010,
+        "nba_active_seasons": "2022,2024,2025",
+        "nba_bpm_avg": -0.2538300289264494,
+        "nba_minutes_y1_y3": 1212.27,
+        "nba_mpg_avg": 16.837083333333332,
+        "nba_school_keys": [
+          "arizona",
+          "davidson"
+        ],
+        "player_name": "Brandon Williams",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "Louisiana Monroe",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2010,
+        "nba_active_seasons": "2022,2024,2025",
+        "nba_bpm_avg": -0.2538300289264494,
+        "nba_minutes_y1_y3": 1212.27,
+        "nba_mpg_avg": 16.837083333333332,
+        "nba_school_keys": [
+          "arizona",
+          "davidson"
+        ],
+        "player_name": "Brandon Williams",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "Northwestern St.",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2013,
+        "nba_active_seasons": "2022,2024,2025",
+        "nba_bpm_avg": -0.2538300289264494,
+        "nba_minutes_y1_y3": 1212.27,
+        "nba_mpg_avg": 16.837083333333332,
+        "nba_school_keys": [
+          "arizona",
+          "davidson"
+        ],
+        "player_name": "Brandon Williams",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "Evansville",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2013,
+        "nba_active_seasons": "2022,2024,2025",
+        "nba_bpm_avg": -0.2538300289264494,
+        "nba_minutes_y1_y3": 1212.27,
+        "nba_mpg_avg": 16.837083333333332,
+        "nba_school_keys": [
+          "arizona",
+          "davidson"
+        ],
+        "player_name": "Brandon Williams",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "UT Arlington",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2015,
+        "nba_active_seasons": "2022,2024,2025",
+        "nba_bpm_avg": -0.2538300289264494,
+        "nba_minutes_y1_y3": 1212.27,
+        "nba_mpg_avg": 16.837083333333332,
+        "nba_school_keys": [
+          "arizona",
+          "davidson"
+        ],
+        "player_name": "Brandon Williams",
+        "recomputed_target_role": "ROTATION"
+      },
+      {
+        "college": "William & Mary",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2015,
+        "nba_active_seasons": "2016,2017,2018",
+        "nba_bpm_avg": 1.937811011813467,
+        "nba_minutes_y1_y3": 5000.0,
+        "nba_mpg_avg": 27.624309392265193,
+        "nba_school_keys": [
+          "fresno state"
+        ],
+        "player_name": "Tyler Johnson",
+        "recomputed_target_role": "STARTER_PLUS"
+      },
+      {
+        "college": "Centenary",
+        "confidence": "name_only_ambiguous",
+        "current_target_role": "NON_NBA",
+        "draft_year": 2009,
+        "nba_active_seasons": "2015,2016,2017",
+        "nba_bpm_avg": 2.0322903594788126,
+        "nba_minutes_y1_y3": 3574.0,
+        "nba_mpg_avg": 25.347517730496453,
+        "nba_school_keys": [
+          "fresno state"
+        ],
+        "player_name": "Tyler Johnson",
+        "recomputed_target_role": "STARTER_PLUS"
+      },
+      {
+        "college": "Georgetown",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2012,
+        "nba_active_seasons": "2014,2015,2016",
+        "nba_bpm_avg": -3.4534909891150685,
+        "nba_minutes_y1_y3": 5558.0,
+        "nba_mpg_avg": 24.702222222222222,
+        "nba_school_keys": [
+          "georgetown"
+        ],
+        "player_name": "Hollis Thompson",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Michigan St.",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2016,
+        "nba_active_seasons": "2017,2018,2019",
+        "nba_bpm_avg": -2.5529124651442268,
+        "nba_minutes_y1_y3": 4001.0,
+        "nba_mpg_avg": 21.057894736842105,
+        "nba_school_keys": [
+          "michigan state"
+        ],
+        "player_name": "Bryn Forbes",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "St. John's",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2014,
+        "nba_active_seasons": "2015,2016,2018",
+        "nba_bpm_avg": -4.806354210881626,
+        "nba_minutes_y1_y3": 2548.0,
+        "nba_mpg_avg": 15.076923076923077,
+        "nba_school_keys": [
+          "st john s ny"
+        ],
+        "player_name": "Jakarr Sampson",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Penn St.",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2020,
+        "nba_active_seasons": "2021,2022,2023",
+        "nba_bpm_avg": -0.7406608405341714,
+        "nba_minutes_y1_y3": 2546.0,
+        "nba_mpg_avg": 15.716049382716049,
+        "nba_school_keys": [
+          "penn state"
+        ],
+        "player_name": "Lamar Stevens",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Old Dominion",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2012,
+        "nba_active_seasons": "2013,2014,2015",
+        "nba_bpm_avg": -2.286399381255713,
+        "nba_minutes_y1_y3": 2406.0,
+        "nba_mpg_avg": 13.988372093023257,
+        "nba_school_keys": [
+          "old dominion"
+        ],
+        "player_name": "Kent Bazemore",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Cincinnati",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2014,
+        "nba_active_seasons": "2015,2016,2017",
+        "nba_bpm_avg": -2.561469161326372,
+        "nba_minutes_y1_y3": 2394.0,
+        "nba_mpg_avg": 23.24271844660194,
+        "nba_school_keys": [
+          "cincinnati"
+        ],
+        "player_name": "Sean Kilpatrick",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Radford",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2015,
+        "nba_active_seasons": "2020,2021,2022",
+        "nba_bpm_avg": -0.4651625365154383,
+        "nba_minutes_y1_y3": 2386.0,
+        "nba_mpg_avg": 15.801324503311259,
+        "nba_school_keys": [
+          "radford"
+        ],
+        "player_name": "Javonte Green",
+        "recomputed_target_role": "BENCH"
+      },
+      {
+        "college": "Kansas",
+        "confidence": "school_match",
+        "current_target_role": "BENCH",
+        "draft_year": 2016,
+        "nba_active_seasons": "2017,2018,2019",
+        "nba_bpm_avg": -6.068301724751414,
+        "nba_minutes_y1_y3": 2306.0,
+        "nba_mpg_avg": 18.747967479674795,
+        "nba_school_keys": [
+          "kansas"
+        ],
+        "player_name": "Wayne Selden Jr.",
+        "recomputed_target_role": "BENCH"
+      }
+    ],
+    "methodological_note": "Existing NBA outcome files can identify undrafted players who later logged NBA minutes. Production relabeling should use identity checks such as school or another stable player identifier to avoid homonym errors; the current pipeline applies the conservative school-match subset.",
+    "non_drafted_rows": 26129,
+    "non_drafted_with_any_nba_name_match": 627,
+    "non_drafted_with_post_ncaa_nba_activity": 567,
+    "recomputed_role_counts_among_matched": {
+      "BENCH": 115,
+      "NON_NBA": 362,
+      "ROTATION": 84,
+      "STARTER_PLUS": 6
+    },
+    "would_change_from_current_target_total": 50,
+    "would_change_from_non_nba_counts": {
+      "BENCH": 115,
+      "NON_NBA": 0,
+      "ROTATION": 84,
+      "STARTER_PLUS": 6
+    },
+    "would_change_from_non_nba_counts_by_confidence": [
+      {
+        "confidence": "name_only_ambiguous",
+        "recomputed_target_role": "BENCH",
+        "rows": 13
+      },
+      {
+        "confidence": "name_only_ambiguous",
+        "recomputed_target_role": "ROTATION",
+        "rows": 7
+      },
+      {
+        "confidence": "name_only_ambiguous",
+        "recomputed_target_role": "STARTER_PLUS",
+        "rows": 2
+      },
+      {
+        "confidence": "school_match",
+        "recomputed_target_role": "BENCH",
+        "rows": 87
+      },
+      {
+        "confidence": "school_match",
+        "recomputed_target_role": "ROTATION",
+        "rows": 64
+      },
+      {
+        "confidence": "school_match",
+        "recomputed_target_role": "STARTER_PLUS",
+        "rows": 4
+      },
+      {
+        "confidence": "unambiguous_name_only",
+        "recomputed_target_role": "BENCH",
+        "rows": 15
+      },
+      {
+        "confidence": "unambiguous_name_only",
+        "recomputed_target_role": "ROTATION",
+        "rows": 13
+      }
+    ],
+    "would_change_from_non_nba_school_match_total": 155,
+    "would_change_from_non_nba_total": 205,
+    "would_change_from_non_nba_unambiguous_name_total": 170
+  }
+}
